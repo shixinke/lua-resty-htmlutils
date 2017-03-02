@@ -28,7 +28,7 @@ status
 description
 ===========
 
-基于openresty(ngx-lua)的html标签操作库，可用于
+基于openresty(ngx-lua)的html标签操作库，可用于截取文章摘要，删除html标签，统计html中文字字数，统计字符串的长度(包括中文)
 
 synopsis
 ========
