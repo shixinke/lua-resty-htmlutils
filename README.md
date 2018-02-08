@@ -43,10 +43,37 @@ synopsis
         location /ueditor/upload {
             default_type application/json;
             content_by_lua_block {
-                local html = require 'resty.htmlutils';
+                local html = require 'resty.htmlutils.htmlutils';
                 local str = '<body><div class="goods">我们<i>真的不错</i></div><p>,另外一个</p></body>'
                 --local newstr = html:strip_tags(str)
                 local newstr, err = html:sub_html(str, 9)
+            };
+        }
+        
+        location /iconfont {
+            default_type application/json;
+            content_by_lua_block {
+            　　 local iconfont = require 'resty.htmlutils.iconfont'
+                -- local icon, err = iconfont:new({file = 'static/fonts/demo_fontclass.html'})
+                local icon, err = iconfont:new({mode = 'http', url = '/static/fonts/demo_fontclass.html'})
+                if not icon then
+                    ngx.say('err:'..err)
+                end
+                local tab, err = icon:parse()
+                if tab then
+                   self.json(200, '', tab)
+                else
+                   self.json(500, 'failed')
+                end
+                -- tab structure
+                --[[
+                [
+                    {
+                        "class": "el-icon-blog-plugin",
+                        "name": "接口"
+                    }
+                ]
+                --]]
             };
         }
     }
@@ -117,7 +144,42 @@ strlen
 
 * `str`
 
-    要计算的字符串长度     
+    要计算的字符串长度    
+    
+iconfont:new
+---
+`syntax: tab, err = iconfont:new(options)`
+    
+iconfont初始化设置
+
+参数如下：
+
+* options : 是一个table,表示初始化选项配置
+
+    * mode : 模式(file表示本地文件;http表示本地网络请求)
+    * file : 本地文件路径
+    * root : 本地文件基本路径
+    * url  : 本地网络请求地址
+    
+用法如下:
+    
+    `local iconfont = require 'resty.htmlutils.iconfont'
+     local icon, err = iconfont:new({file = 'static/fonts/demo_fontclass.html'})
+     `    
+    
+    
+iconfont:parse
+---
+`syntax: tab, err = iconfont:parse()`
+    
+将iconfont的演示文件解析为一个table
+    
+用法如下:
+    
+    `local iconfont = require 'resty.htmlutils.iconfont'
+     -- local icon, err = iconfont:new({file = 'static/fonts/demo_fontclass.html'})
+     local icon, err = iconfont:new({mode = 'http', url = '/static/fonts/demo_fontclass.html'})
+     tab, err = icon:parse()`
 
 [返回主菜单](#menu)
 
