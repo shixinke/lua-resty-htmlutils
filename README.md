@@ -19,7 +19,8 @@ Menu
        * [strip_tags](#strip_tags)
        * [textlen](#textlen)
        * [strlen](#strlen)
-    * iconfont类库
+    * iconfont类库:
+    
     　　* [new](#new)
        * [parse](#parse)
 * [TODO](#todo)
