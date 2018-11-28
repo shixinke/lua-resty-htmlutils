@@ -1,7 +1,9 @@
 Name
 ====
 
-lua-resty-htmlutils - 一个基于ngx-lua(openresty)的用于处理html标签相关的类库，可用于删除html标签，统计html中的文字长度，获取文章的摘要等
+lua-resty-htmlutils - 一个基于ngx-lua(openresty)的用于处理html标签相关的类库
+* 可用于删除html标签，统计html中的文字长度，获取文章的摘要等
+* 可将iconfont中的样式解析成table
 
 Menu
 =================
@@ -11,11 +13,15 @@ Menu
 * [描述](#description)
 * [使用说明](#synopsis)
 * [方法](#methods)
-    * [truncate](#truncate)
-    * [sub_html](#sub_html)
-    * [strip_tags](#strip_tags)
-    * [textlen](#textlen)
-    * [strlen](#strlen)
+    * htmlutils类库：
+       * [truncate](#truncate)
+       * [sub_html](#sub_html)
+       * [strip_tags](#strip_tags)
+       * [textlen](#textlen)
+       * [strlen](#strlen)
+    * iconfont类库
+    　　* [new](#new)
+       * [parse](#parse)
 * [TODO](#todo)
 * [Author](#author)
 
